@@ -1,0 +1,159 @@
+<!doctype html> <!-- Important: must specify -->
+<html>
+<head>
+    <link rel="icon" href="${logo}" type="image/png"/>
+    <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 characters -->
+    <script src="//unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+    <title>${title}</title>
+    <style id="rapiStyle">
+        rapi-doc::part(section-navbar-path) {
+            margin-left: 20px !important;
+        }
+
+        rapi-doc::part(section-navbar-search) {
+            padding: 10px !important;
+        }
+
+    </style>
+</head>
+<body>
+<rapi-doc heading-text="${title}"
+          id="the-doc"
+          primary-color="${color}"
+          show-info="true"
+          show-header="true"
+          allow-advanced-search="true"
+          spec-url="${openapiUrl}">
+
+    <img slot="logo" src="${logo}" style="height:40px"/>
+</rapi-doc>
+</body>
+<script>
+    function refreshStyle() {
+        let element = document.getElementById("rapiStyle");
+        let parent = element.parentNode;
+        parent.removeChild(element)
+        setTimeout(() => {
+            parent.appendChild(element);
+        }, 1);
+    }
+
+    function initEvent() {
+        let shadowRoot = document.getElementById("the-doc").shadowRoot;
+        bindEvent(shadowRoot);
+    }
+
+    function bindEvent(baseNode) {
+        let bind=baseNode.dataBind;
+        if (!bind) {
+            const mutationObserver = new MutationObserver(() => {
+                setTimeout(toChinese, 10);
+                bindEvent(baseNode);
+            });
+            mutationObserver.observe(baseNode, {
+                childList: true,
+                subtree: true
+            });
+            baseNode.dataBind = true;
+        }
+
+        let apiRequestNodes = baseNode.querySelectorAll("api-request");
+        for (let node of apiRequestNodes) {
+            bindEvent(node.shadowRoot);
+        }
+
+        let apiResponseNodes = baseNode.querySelectorAll("api-response");
+        for (let node of apiResponseNodes) {
+            bindEvent(node.shadowRoot);
+        }
+    }
+
+    function safeCompare(val1, val2) {
+        if (val1 === val2) {
+            return true;
+        }
+        val1 = val1.replaceAll(" ", "");
+        val2 = val2.replaceAll(" ", "");
+        if (val1 === val2) {
+            return true;
+        }
+        if (val1.toLowerCase() === val2.toLowerCase()) {
+            return true;
+        }
+        return false;
+    }
+
+    function toChinese(baseNode) {
+        if (!baseNode) {
+            baseNode = document.getElementById("the-doc").shadowRoot;
+        }
+
+        let selectionTitles = baseNode.querySelectorAll(".nav-bar-section-title");
+        if (selectionTitles) {
+            for (let node of selectionTitles) {
+                if (safeCompare(node.innerText, "OPERATIONS")) {
+                    node.innerText = "接口列表";
+                }
+            }
+        }
+
+        let buttons = baseNode.querySelectorAll(".m-btn");
+        if (buttons) {
+            for (let node of buttons) {
+                if (safeCompare(node.innerText, "LOCAL JSON FILE")) {
+                    node.innerText = "加载本地接口文档";
+                } else if (safeCompare(node.innerText, "SEARCH")) {
+                    node.innerText = "搜索文档";
+                } else if (safeCompare(node.innerText, "TRY")) {
+                    node.innerText = "提交测试";
+                } else if (safeCompare(node.innerText, "CLEAR")) {
+                    node.innerText = "清空参数";
+                }else if (safeCompare(node.innerText, "CLEAR RESPONSE")) {
+                    node.innerText = "清空响应内容";
+                }
+            }
+        }
+
+        let tabButtons = baseNode.querySelectorAll(".tab-btn");
+        if (tabButtons) {
+            for (let node of tabButtons) {
+                if (safeCompare(node.innerText, " RESPONSE")) {
+                    node.innerText = "响应内容（Response）";
+                } else if (safeCompare(node.innerText, " RESPONSE HEADERS")) {
+                    node.innerText = "响应的头信息（Response-Headers）";
+                }
+            }
+        }
+
+        let requestTitles = baseNode.querySelectorAll(".req-res-title");
+        if (requestTitles) {
+            for (let node of requestTitles) {
+                if (safeCompare(node.innerText, "REQUEST")) {
+                    node.innerText = "接口参数";
+                } else if (safeCompare(node.innerText, "RESPONSE")) {
+                    node.innerText = "接口响应";
+                }
+            }
+        }
+        let apiRequestNodes = baseNode.querySelectorAll("api-request");
+        for (let node of apiRequestNodes) {
+            toChinese(node.shadowRoot);
+        }
+
+        let apiResponseNodes = baseNode.querySelectorAll("api-response");
+        for (let node of apiResponseNodes) {
+            toChinese(node.shadowRoot);
+        }
+    }
+
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const rapidocEl = document.getElementById('the-doc');
+        rapidocEl.addEventListener('spec-loaded', () => {
+            initEvent();
+            refreshStyle();
+            toChinese();
+        });
+    });
+</script>
+</html>

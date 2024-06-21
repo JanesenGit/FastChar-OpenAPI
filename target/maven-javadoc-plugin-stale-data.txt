@@ -1,0 +1,50 @@
+-Xdoclint:none
+@options
+@packages
+-classpath
+'/Users/Janesen/.m2/repository/com/fastchar/fastchar/2.2.0/fastchar-2.2.0.jar'
+-encoding
+'UTF-8'
+-private
+-source
+'1.8'
+-sourcepath
+'/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/src/main/java:/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'FastChar-OpenAPI 1.0.0 API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' '/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/javadoc-bundle-options'
+-nohelp
+-use
+-version
+-windowtitle
+'FastChar-OpenAPI 1.0.0 API'
+com.fastchar.openapi.rapidoc
+com.fastchar.openapi.annotation
+com.fastchar.openapi.action
+com.fastchar.openapi
+/Users/Janesen/.m2/repository/com/fastchar/fastchar/2.2.0/fastchar-2.2.0.jar = 1718938898000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/src/main/java = 1716269723000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/generated-sources/annotations = 1718962081000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/constant-values.html = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/overview-tree.html = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/index.html = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/overview-frame.html = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/allclasses-noframe.html = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/serialized-form.html = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/index-all.html = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/deprecated-list.html = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/script.js = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/stylesheet.css = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/overview-summary.html = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/allclasses-frame.html = 1718962085000
+/Users/Janesen/工作/space_idea/FrameWork/FastChar-OpenAPI/target/apidocs/package-list = 1718962085000
